@@ -1,21 +1,29 @@
-char *ft_tetri_lib()
-{
-	char nb_tetri[];
-	char tetri_i[];
-	char tetri_j[];
-	char tetri_l[];
-	char tetri_o[];
-	char tetri_s[];
-	char tetri_z[];
-	char tetri_t[];
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tetri_lib.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/27 21:07:34 by acoulomb          #+#    #+#             */
+/*   Updated: 2018/04/27 21:11:27 by acoulomb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//ft_strjoin(str,
-	nb_tetri = "19\n";
-	tetri_i = "I1 4 1\n#\n#\n#\n#\nI2 1 4\n####\n";
-	tetri_j = "J1 2 3\n###\n..#\nJ2 2 3\n#..\n###\nJ3 3 2\n##\n#.\n#.\nJ4 3 2\n.#\n.#\n##\n";
-	tetri_l = "L1 2 3\n###\n#..\nL2 2 3\n..#\n###\nL3 3 2\n#.\n#.\n##\nL4 3 2\n##\n.#\n.#\n";
-	tetri_o = "O1 2 2\n##\n##\n";
-	tetri_s = "S1 2 3\n.##\n##.\nS2 3 2\n#.\n##\n.#\n";
-	tetri_z = "Z1 2 3\n##.\n.##\nZ2 3 2\n.#\n##\n#.\n";
-	tetri_t = "T1 2 3\n.#.\n###\nT2 2 3\n###\n.#.\nT3 3 2\n#.\n##\n#.\nT4 3 2\n.#\n##\n.#";
+#include "libft/libft.h"
+
+char *ft_tetri_lib(char *str);
+{
+	char str[1];
+	
+	str[0] = '/0';
+	ft_strjoin(str, NB_TETRI_LIB);
+	ft_strjoin(str, TETRI_I);
+	ft_strjoin(str, TETRI_J);
+	ft_strjoin(str, TETRI_L);
+	ft_strjoin(str, TETRI_O);
+	ft_strjoin(str, TETRI_S);
+	ft_strjoin(str, TETRI_Z);
+	ft_strjoin(str, TETRI_T);
+	return (str);
 }
