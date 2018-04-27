@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:10:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/27 21:26:38 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/27 21:39:09 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		main(int argc, char **argv)
 	char			*str;
 
 	str = NULL;
-	str = ft_tetri_lib(str);
+	str = ft_tetri_lib();
 	if (argc != 2)
 		ft_usage(argc);
 	g_patterns = ft_read_patterns(str);
