@@ -56,6 +56,6 @@ fillit
 *.o
 *.DS_Store
 a.out
-a.out.dSYM
+a.out.dSYM/*
 *.json
 .vscode/*
