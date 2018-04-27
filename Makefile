@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: malberte <malberte@student.42.fr>          +#+  +:+       +#+         #
+#    By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/03 22:08:39 by acoulomb          #+#    #+#              #
-#    Updated: 2018/04/27 21:04:33 by malberte         ###   ########.fr        #
+#    Updated: 2018/04/27 21:38:12 by acoulomb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,9 @@ SRC =	\
 		tetrimino.c \
 		tetrimino_pattern.c \
 		tetris_board.c \
+		tetri_lib.c \
 		clean.c
-
+		
 OBJS = $(SRC:.c=.o)
 LIB = ./libft/libft.a
 
