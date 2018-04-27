@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:51:06 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/26 18:23:58 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/27 22:55:05 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include "libft/libft.h"
 #include "tetrimino.h"
+#include "clean.h"
 
 static char		*read_line(int pos[NB_BLOCKS][2], int *nb_blocks, const char *buf, int height)
 {
@@ -39,9 +40,16 @@ static char		*read_line(int pos[NB_BLOCKS][2], int *nb_blocks, const char *buf, 
 			return(NULL);
 		++w;
 	}
-	if (w < NB_BLOCKS || buf[w] != '\n')
-		return(NULL);
-	++w;
+	// if (w < NB_BLOCKS || buf[w] != '\n')
+	// 	return(NULL);
+	if (w < NB_BLOCKS)
+		return (NULL);
+	if (buf[w] == '\n')
+	{
+		++w;
+		if (buf[w] == '\0')
+			ft_clean();
+	}
 	return ((char *)(buf + w));
 }
 
@@ -69,11 +77,9 @@ static char		*read_tetrimino(t_tetrimino **new, int *nb_tetri, const char *buf)
 		return (NULL);
 	}
 	if (*buf == '\n')
-	{
 		buf++;
-	}
-	else if (*buf != '\0')
-		return (NULL);
+	// else if (*buf != '\0')
+	// 	return (NULL);
 	pat = ft_pattern_recognition(pos);
 	if (pat == NULL)
 		return (NULL);

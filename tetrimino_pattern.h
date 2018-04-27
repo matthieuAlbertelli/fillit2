@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:02:13 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/27 01:58:30 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/27 23:04:35 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ extern t_tetrimino_pattern **g_patterns;
 t_tetrimino_pattern **ft_read_patterns(const char *file);
 void ft_coords_to_layout(int pos[NB_BLOCKS][2]);
 t_tetrimino_pattern *ft_pattern_recognition(int pos[NB_BLOCKS][2]);
+void ft_free_patterns();
 
 #endif
