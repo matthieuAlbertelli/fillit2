@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetrimino_pattern.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:21:50 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/27 21:04:16 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/27 23:03:16 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,4 +167,20 @@ t_tetrimino_pattern *ft_pattern_recognition(int pos[NB_BLOCKS][2])
 		++pat;
 	}
 	return (NULL);
+}
+
+void ft_free_patterns()
+{
+	t_tetrimino_pattern **pat;
+
+	if (g_patterns != NULL)
+	{
+		pat = g_patterns;
+		while (*pat)
+		{
+			ft_memdel((void**)pat);
+			pat++;
+		}
+		ft_memdel((void**)&g_patterns);
+	}	
 }
