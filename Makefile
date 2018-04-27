@@ -6,7 +6,7 @@
 #    By: malberte <malberte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/03 22:08:39 by acoulomb          #+#    #+#              #
-#    Updated: 2018/04/26 09:59:29 by malberte         ###   ########.fr        #
+#    Updated: 2018/04/27 21:04:33 by malberte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC =	\
 		tetrimino.c \
 		tetrimino_pattern.c \
 		tetris_board.c \
-		safe_exit.c
+		clean.c
 
 OBJS = $(SRC:.c=.o)
 LIB = ./libft/libft.a

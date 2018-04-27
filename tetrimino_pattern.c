@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:21:50 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/27 18:48:22 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/27 21:04:16 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include "./libft/libft.h"
 #include "tetrimino_pattern.h"
+#include "clean.h"
 
 static t_tetrimino_pattern **init_patterns_tab(unsigned int nb_patterns)
 {
@@ -23,7 +24,7 @@ static t_tetrimino_pattern **init_patterns_tab(unsigned int nb_patterns)
 	tab_size = sizeof(t_tetrimino_pattern *) * (nb_patterns + 1);
 	patterns = (t_tetrimino_pattern **)ft_memalloc(tab_size);
 	if (patterns == NULL)
-		
+		ft_exit();
 	return (patterns);
 }
 
@@ -33,7 +34,7 @@ static t_tetrimino_pattern *init_pattern()
 
 	tetri = (t_tetrimino_pattern *)ft_memalloc(sizeof(t_tetrimino_pattern));
 	if (tetri == NULL)
-		ft_on_error(NULL, NULL);
+		ft_exit();
 	return (tetri);
 }
 
