@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetrimino.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:51:06 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 15:08:55 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 16:38:54 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include <unistd.h>
 #include "libft/libft.h"
 #include "tetrimino.h"
+
+/*
+** This function opens the input file. If the file is valid, buf_size characters 
+** are copied in the buf in order to process it.
+*/
 
 int		ft_tetri_to_str(char *buf, size_t buf_size, char *filename)
 {

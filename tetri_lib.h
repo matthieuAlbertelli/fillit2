@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 21:07:42 by acoulomb          #+#    #+#             */
-/*   Updated: 2018/04/28 12:52:20 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 16:07:55 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@
 # define TETRI_T "T1 2 3\n.#.\n###\nT2 2 3\n###\n.#.\n"
 # define TETRI_T2 "T3 3 2\n#.\n##\n#.\nT4 3 2\n.#\n##\n.#"
 
-char *ft_tetri_lib();
+char *ft_tetri_lib(void);
 
 #endif

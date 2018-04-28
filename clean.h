@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 12:44:42 by acoulomb          #+#    #+#             */
-/*   Updated: 2018/04/28 12:45:58 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 16:05:05 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,13 @@ typedef struct			s_clean
 
 extern					t_clean	g_clean;
 
-void	ft_clean();
-void	*ft_safe_alloc(size_t size);
-void	ft_exit();
+/*
+** g_clean is the global structure that contains all the allocated data of
+** the program. At any time, if the program needs to exit, the global is freed.
+*/
+
+void					ft_clean();
+void					*ft_safe_alloc(size_t size);
+void					ft_exit();
 
 #endif

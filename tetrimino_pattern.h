@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetrimino_pattern.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:02:13 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 14:04:28 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 16:24:59 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ typedef struct				s_tetrimino_pattern
 typedef int t_blocks[NB_BLOCKS][2];
 
 extern t_tetrimino_pattern	**g_patterns;
+
+/*
+** g_patterns is the global that contains the 19 standard t_tetrimino_pattern.
+** It is used each time the program reads a tetrimino, in order to recognise 
+** the pattern.
+*/
 
 t_tetrimino_pattern			**ft_read_patterns(const char *file);
 void						ft_coords_to_layout(int pos[NB_BLOCKS][2]);
