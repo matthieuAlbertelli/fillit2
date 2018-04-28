@@ -3,15 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   tetris_board.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 13:28:58 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 22:41:03 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "tetris_board.h"
+
+void calc_offset(int offset[2], const int pos[2], const t_blocks layout)
+{
+	offset[HEIGHT] = pos[HEIGHT] - layout[HEIGHEST_BLOCK][HEIGHT];
+	offset[WIDTH] = pos[WIDTH] - layout[HEIGHEST_BLOCK][WIDTH];
+}
+
+int is_pos_inside(const int pos[2], int square_size)
+{
+	if (pos[HEIGHT] >= 0 && pos[HEIGHT] < square_size
+		&& pos[WIDTH] >= 0 && pos[WIDTH] < square_size)
+		return (1);
+	return (0);
+}
+
+int is_square_available(const t_tetris_board *board, int pos[2])
+{
+	return (board->board[pos[HEIGHT]][pos[WIDTH]]);
+}
+
+void lock_square(t_tetris_board *board, const int pos[2], int lock_state)
+{
+	board->board[pos[HEIGHT]][pos[WIDTH]] = lock_state;
+}
+
+void apply_offset(t_blocks result, const t_blocks layout, const int pos[2], const int offset[2])
+{
+	int block;
+	
+	result[HEIGHEST_BLOCK][HEIGHT] = pos[HEIGHT];
+	result[HEIGHEST_BLOCK][WIDTH] = pos[WIDTH];
+	block = 1;
+	while (block < NB_BLOCKS)
+	{
+		result[block][HEIGHT] = layout[block][HEIGHT] + offset[HEIGHT];
+		result[block][WIDTH] = layout[block][WIDTH] + offset[WIDTH];
+		++block;
+	}
+}
+
+void poscpy(int dst[2], const int src[2])
+{
+	dst[0] = src[0];
+	dst[1] = src[1];
+}
 
 /*
 **Ces deux fonctions peuvent etre regroupees en une au prix d'operations
@@ -20,10 +65,7 @@
 **
 ** precondition: pos est libre
 */
-
-int		ft_fill_tetrimino(t_tetris_board *board,
-						int pos[2],
-						int tetrimino_layout[NB_BLOCKS][2])
+int		ft_fill_tetrimino(t_tetris_board *board, int pos[2], t_blocks layout)
 {
 	int block;
 	int fill_pos[NB_BLOCKS][2];
@@ -31,55 +73,42 @@ int		ft_fill_tetrimino(t_tetris_board *board,
 
 	if (pos[WIDTH] == -1)
 		return (0);
-	offset[HEIGHT] = pos[HEIGHT] - tetrimino_layout[HEIGHEST_BLOCK][HEIGHT];
-	offset[WIDTH] = pos[WIDTH] - tetrimino_layout[HEIGHEST_BLOCK][WIDTH];
-	fill_pos[HEIGHEST_BLOCK][HEIGHT] = pos[HEIGHT];
-	fill_pos[HEIGHEST_BLOCK][WIDTH] = pos[WIDTH];
+	calc_offset(offset, pos, layout);
+	poscpy(fill_pos[HEIGHEST_BLOCK], pos);
 	block = 1;
 	while (block < NB_BLOCKS)
 	{
-		fill_pos[block][HEIGHT] = tetrimino_layout[block][HEIGHT] + offset[HEIGHT];
-		fill_pos[block][WIDTH] = tetrimino_layout[block][WIDTH] + offset[WIDTH];
-		if (fill_pos[block][HEIGHT] < 0 || fill_pos[block][HEIGHT] >= board->size ||
-			fill_pos[block][WIDTH] < 0 || fill_pos[block][WIDTH] >= board->size ||
-			board->board[fill_pos[block][HEIGHT]][fill_pos[block][WIDTH]] == UNAVAILABLE_SQUARE)
+		fill_pos[block][HEIGHT] = layout[block][HEIGHT] + offset[HEIGHT];
+		fill_pos[block][WIDTH] = layout[block][WIDTH] + offset[WIDTH];
+		if (!(is_pos_inside(fill_pos[block], board->size)
+			&& is_square_available(board, fill_pos[block])))
 			return (0);
 		++block;
 	}
 	block = 0;
 	while (block < NB_BLOCKS)
 	{
-		board->board[fill_pos[block][HEIGHT]][fill_pos[block][WIDTH]] = UNAVAILABLE_SQUARE;
+		lock_square(board, fill_pos[block], UNAVAILABLE_SQUARE);
 		++block;
 	}
 	return (1);
 }
 
-void	ft_unblock_tetrimino(t_tetris_board *board,
-							const int pos[2],
-							const int tetrimino_layout[NB_BLOCKS][2])
+void	ft_unblock_tetrimino(t_tetris_board *board,	const int pos[2],
+							const int layout[NB_BLOCKS][2])
 {
 	int block;
-	int unblock_pos[NB_BLOCKS][2];
+	t_blocks unblock_pos;
 	int offset[2];
 
 	if (pos[WIDTH] != -1)
 	{
-		offset[HEIGHT] = pos[HEIGHT] - tetrimino_layout[HEIGHEST_BLOCK][HEIGHT];
-		offset[WIDTH] = pos[WIDTH] - tetrimino_layout[HEIGHEST_BLOCK][WIDTH];
-		unblock_pos[HEIGHEST_BLOCK][HEIGHT] = pos[HEIGHT];
-		unblock_pos[HEIGHEST_BLOCK][WIDTH] = pos[WIDTH];
-		block = 1;
-		while (block < NB_BLOCKS)
-		{
-			unblock_pos[block][HEIGHT] = tetrimino_layout[block][HEIGHT] + offset[HEIGHT];
-			unblock_pos[block][WIDTH] = tetrimino_layout[block][WIDTH] + offset[WIDTH];
-			++block;
-		}
+		calc_offset(offset, pos, layout);
+		apply_offset(unblock_pos, layout, pos, offset);
 		block = 0;
 		while (block < NB_BLOCKS)
 		{
-			board->board[unblock_pos[block][HEIGHT]][unblock_pos[block][WIDTH]] = AVAILABLE_SQUARE;
+			lock_square(board, unblock_pos[block], AVAILABLE_SQUARE);
 			++block;
 		}
 	}
@@ -154,7 +183,7 @@ void	ft_print_solution(const t_tetris_board *board)
 {
 	int					i;
 	int					block;
-	char				solution[board->size + 1][board->size + 1];
+	char				solution[board->size + 1][board->size + 1]; //fuck off
 	int					offset[2];
 	t_tetrimino_pattern	*pattern;
 
