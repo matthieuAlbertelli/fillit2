@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetrimino.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:51:06 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 12:26:35 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 12:59:25 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "tetrimino.h"
 #include "clean.h"
 
-static char		*read_line(int pos[NB_BLOCKS][2], int *nb_blocks, const char *buf, int height)
+static char		*read_line(int pos[NB_BLOCKS][2], int *nb_blocks, \
+							const char *buf, int height)
 {
 	int w;
 
@@ -25,12 +26,12 @@ static char		*read_line(int pos[NB_BLOCKS][2], int *nb_blocks, const char *buf, 
 	{
 		if (buf[w] == '#')
 		{
-			if(*nb_blocks < NB_BLOCKS)
+			if (*nb_blocks < NB_BLOCKS)
 			{
 				pos[*nb_blocks][HEIGHT] = height;
 				pos[*nb_blocks][WIDTH] = w;
 			}
-			else 
+			else
 			{
 				ft_exit();
 			}
@@ -47,10 +48,10 @@ static char		*read_line(int pos[NB_BLOCKS][2], int *nb_blocks, const char *buf, 
 
 static char		*read_tetrimino(t_tetrimino **new, const char *buf)
 {
-	int h;
-	int nb_blocks;
-	int pos[NB_BLOCKS][2];
-	t_tetrimino_pattern *pat;
+	int					h;
+	int					nb_blocks;
+	int					pos[NB_BLOCKS][2];
+	t_tetrimino_pattern	*pat;
 
 	nb_blocks = 0;
 	h = 0;
@@ -97,17 +98,16 @@ void	ft_free_tetri(t_tetrimino **tetri, int *nb_tetri)
 	*nb_tetri = 0;
 }
 
-int	ft_read_tetriminos(t_tetrimino **tetri, int *nb_tetri, const char *filename)
+int		ft_read_tetriminos(t_tetrimino **tetri, int *nb_tetri, \
+							const char *filename)
 {
-	int fd;
-	char buf[BUF_SIZE];
-	char *pbuf;
-	ssize_t bytes;
-	
+	int		fd;
+	char	buf[BUF_SIZE];
+	char	*pbuf;
+	ssize_t	bytes;
+
 	if (nb_tetri == NULL)
-	{
 		return (0);
-	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);

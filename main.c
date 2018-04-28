@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:10:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/27 23:10:53 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 13:29:52 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int		main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_usage(argc);
-	clean.tetris = &board;
-    clean.ft_free_tetris_board = &ft_free_tetris_board;
-    clean.g_patterns = g_patterns;
-    clean.ft_free_patterns = &ft_free_patterns;   
+	g_clean.tetris = &board;
+    g_clean.ft_free_tetris_board = &ft_free_tetris_board;
+    g_clean.g_patterns = g_patterns;
+    g_clean.ft_free_patterns = &ft_free_patterns;   
 	str = NULL;
 	str = ft_tetri_lib();
 	g_patterns = ft_read_patterns(str);
