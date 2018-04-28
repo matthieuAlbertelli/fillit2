@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:51:06 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/27 22:55:05 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 04:06:17 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ static char		*read_line(int pos[NB_BLOCKS][2], int *nb_blocks, const char *buf, 
 	// 	return(NULL);
 	if (w < NB_BLOCKS)
 		return (NULL);
-	if (buf[w] == '\n')
-	{
-		++w;
-		if (buf[w] == '\0')
-			ft_clean();
-	}
+	// if (buf[w] == '\n')
+	// {
+	// 	++w;
+	// 	if (buf[w] == '\0')
+	// 		ft_clean();
+	// }
 	return ((char *)(buf + w));
 }
 
@@ -60,9 +60,9 @@ static char		*read_tetrimino(t_tetrimino **new, int *nb_tetri, const char *buf)
 	int pos[NB_BLOCKS][2];
 	t_tetrimino_pattern *pat;
 
-	h = 0;
 	nb_blocks = 0;
-	while (*buf && h < 4)
+	h = 0;
+	while (*buf && h < 3)
 	{
 		buf = read_line(pos, &nb_blocks, buf, h);
 		if (buf == NULL)
@@ -70,14 +70,23 @@ static char		*read_tetrimino(t_tetrimino **new, int *nb_tetri, const char *buf)
 			*nb_tetri = 0;
 			return (0);
 		}
+		if (*buf != '\n')
+			ft_exit();
+		++buf;
 		h++;
 	}
+	buf = read_line(pos, &nb_blocks, buf, h);
+	++h;
+	if (*buf == '\n')
+		++buf;
+	else if (*buf != '\0')
+		ft_exit();
 	if (h != NB_BLOCKS)
 	{
 		return (NULL);
 	}
-	if (*buf == '\n')
-		buf++;
+	// if (*buf == '\n')
+	// 	buf++;
 	// else if (*buf != '\0')
 	// 	return (NULL);
 	pat = ft_pattern_recognition(pos);
@@ -144,6 +153,12 @@ int	ft_read_tetriminos(t_tetrimino **tetri, int *nb_tetri, const char *filename)
 		tetri[*nb_tetri]->pos[HEIGHT] = 0;
 		tetri[*nb_tetri]->pos[WIDTH] = -1;
 		++*nb_tetri;
+		if (*pbuf == '\n')
+		{
+			++pbuf;
+			if (*pbuf == '\0')
+				ft_exit();
+		}
 	}
 	return (1);
 }
