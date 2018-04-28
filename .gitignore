@@ -60,3 +60,4 @@ a.out.dSYM/*
 *.json
 .vscode/*
 libft/*
+libft

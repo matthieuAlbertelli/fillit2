@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:21:50 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 11:38:59 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 12:27:29 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,10 @@ static int read_pattern_layout(t_tetrimino_pattern *pat, const char *src)
 t_tetrimino_pattern **ft_read_patterns(const char *str)
 {
 	t_tetrimino_pattern **patterns;
-//	char str[BUF_SIZE];
 	int k;
 	int nb_pat;
 
 	k = 0;
-//	file_to_str(str, file);
 	nb_pat = ft_atoi(str);
 	k += 3;
 	patterns = init_patterns_tab(nb_pat);

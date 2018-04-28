@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/25 19:51:30 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 12:28:15 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int ft_fill_tetrimino(	t_tetris_board *board,
 		return (0);
 	offset[HEIGHT] = pos[HEIGHT] - tetrimino_layout[HEIGHEST_BLOCK][HEIGHT];
 	offset[WIDTH] = pos[WIDTH] - tetrimino_layout[HEIGHEST_BLOCK][WIDTH];
-	// if (offset[HEIGHT] < 0 || offset[WIDTH] < 0)
-	// 	return (0);
 	fill_pos[HEIGHEST_BLOCK][HEIGHT] = pos[HEIGHT];
 	fill_pos[HEIGHEST_BLOCK][WIDTH] = pos[WIDTH];
 	block = 1;
@@ -98,8 +96,6 @@ int	ft_next_available_square(	int next_pos[2],
 	next_pos[WIDTH] = -1;
 	h = tetrimino->pos[HEIGHT];
 	w = tetrimino->pos[WIDTH] + 1;
-//	if (w == -1)
-//		w = 0;
 	while (h < board->size)
 	{
 		while (w < board->size)

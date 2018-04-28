@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:51:06 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 12:06:44 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 12:26:35 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,20 @@ static char		*read_line(int pos[NB_BLOCKS][2], int *nb_blocks, const char *buf, 
 			}
 			else 
 			{
-				return (NULL);
+				ft_exit();
 			}
 			++*nb_blocks;
 		}
 		else if (buf[w] != '.')
-			return(NULL);
+			ft_exit();
 		++w;
 	}
-	// if (w < NB_BLOCKS || buf[w] != '\n')
-	// 	return(NULL);
 	if (w < NB_BLOCKS)
 		ft_exit();
-	// if (buf[w] == '\n')
-	// {
-	// 	++w;
-	// 	if (buf[w] == '\0')
-	// 		ft_clean();
-	// }
 	return ((char *)(buf + w));
 }
 
-static char		*read_tetrimino(t_tetrimino **new, int *nb_tetri, const char *buf)
+static char		*read_tetrimino(t_tetrimino **new, const char *buf)
 {
 	int h;
 	int nb_blocks;
@@ -66,10 +58,7 @@ static char		*read_tetrimino(t_tetrimino **new, int *nb_tetri, const char *buf)
 	{
 		buf = read_line(pos, &nb_blocks, buf, h);
 		if (buf == NULL)
-		{
-			*nb_tetri = 0;
-			return (0);
-		}
+			ft_exit();
 		if (*buf != '\n')
 			ft_exit();
 		++buf;
@@ -82,21 +71,13 @@ static char		*read_tetrimino(t_tetrimino **new, int *nb_tetri, const char *buf)
 	else if (*buf != '\0')
 		ft_exit();
 	if (h != NB_BLOCKS)
-	{
-		return (NULL);
-	}
-	// if (*buf == '\n')
-	// 	buf++;
-	// else if (*buf != '\0')
-	// 	return (NULL);
+		ft_exit();
 	pat = ft_pattern_recognition(pos);
 	if (pat == NULL)
-		return (NULL);
+		ft_exit();
 	*new = (t_tetrimino*)ft_memalloc(sizeof(t_tetrimino));
 	if (*new == NULL)
-	{
-		return (NULL);
-	}
+		ft_exit();
 	(*new)->pattern = pat;
 	(*new)->pos[HEIGHT] = 0;
 	(*new)->pos[WIDTH] = 0;
@@ -140,16 +121,10 @@ int	ft_read_tetriminos(t_tetrimino **tetri, int *nb_tetri, const char *filename)
 	while (*pbuf)
 	{
 		if (*nb_tetri == MAX_TETRIMINOS)
-		{
-			ft_free_tetri(tetri, nb_tetri);
-			return (0);
-		}
-		pbuf = read_tetrimino(&(tetri[*nb_tetri]), nb_tetri, pbuf);
+			ft_exit();
+		pbuf = read_tetrimino(&(tetri[*nb_tetri]), pbuf);
 		if (pbuf == 0)
-		{
-			ft_free_tetri(tetri, nb_tetri);
-			return (0);
-		}
+			ft_exit();
 		tetri[*nb_tetri]->pos[HEIGHT] = 0;
 		tetri[*nb_tetri]->pos[WIDTH] = -1;
 		++*nb_tetri;
