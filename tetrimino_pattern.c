@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetrimino_pattern.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:21:50 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 13:09:42 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 14:17:47 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,84 +16,7 @@
 #include "tetrimino_pattern.h"
 #include "clean.h"
 
-static t_tetrimino_pattern	**init_patterns_tab(unsigned int nb_patterns)
-{
-	t_tetrimino_pattern	**patterns;
-	size_t				tab_size;
-
-	tab_size = sizeof(t_tetrimino_pattern *) * (nb_patterns + 1);
-	patterns = (t_tetrimino_pattern **)ft_memalloc(tab_size);
-	if (patterns == NULL)
-		ft_exit();
-	return (patterns);
-}
-
-static t_tetrimino_pattern	*init_pattern()
-{
-	t_tetrimino_pattern *tetri;
-
-	tetri = (t_tetrimino_pattern *)ft_memalloc(sizeof(t_tetrimino_pattern));
-	if (tetri == NULL)
-		ft_exit();
-	return (tetri);
-}
-
-static int					read_pattern_layout(t_tetrimino_pattern *pat, \
-												const char *src)
-{
-	int h;
-	int w;
-	int nb_block;
-	int src_i;
-
-	nb_block = 0;
-	h = -1;
-	src_i = 0;
-	while (++h < pat->dim[HEIGHT])
-	{
-		w = -1;
-		while (++w < pat->dim[WIDTH])
-		{
-			if (src[src_i] == '#')
-			{
-				pat->blocks_pos[nb_block][HEIGHT] = h;
-				pat->blocks_pos[nb_block][WIDTH] = w;
-				nb_block++;
-			}
-			src_i++;
-		}
-		src_i++;
-	}
-	return (src_i);
-}
-
-t_tetrimino_pattern			**ft_read_patterns(const char *str)
-{
-	t_tetrimino_pattern	**patterns;
-	int					k;
-	int					nb_pat;
-
-	k = 0;
-	nb_pat = ft_atoi(str);
-	k += 3;
-	patterns = init_patterns_tab(nb_pat);
-	while (str[k])
-	{
-		--nb_pat;
-		patterns[nb_pat] = init_pattern();
-		ft_strncpy(patterns[nb_pat]->name, str + k, 2);
-		k += 3;
-		patterns[nb_pat]->dim[HEIGHT] = ft_atoi(str + k);
-		k += 2;
-		patterns[nb_pat]->dim[WIDTH] = ft_atoi(str + k);
-		k += 2;
-		k += read_pattern_layout(patterns[nb_pat], str + k);
-	}
-	return (patterns);
-}
-
-void						ft_make_layout(int layout[NB_BLOCKS][2], \
-											int offset[2])
+void					ft_make_layout(t_blocks layout, int offset[2])
 {
 	int block;
 	int dimension;
@@ -111,7 +34,7 @@ void						ft_make_layout(int layout[NB_BLOCKS][2], \
 	}
 }
 
-void						ft_coords_to_layout(int blocks_coords[NB_BLOCKS][2])
+void					ft_coords_to_layout(t_blocks blocks_coords)
 {
 	int block;
 	int dimension;
@@ -136,11 +59,30 @@ void						ft_coords_to_layout(int blocks_coords[NB_BLOCKS][2])
 	ft_make_layout(blocks_coords, offset);
 }
 
-t_tetrimino_pattern			*ft_pattern_recognition(int pos[NB_BLOCKS][2])
+static int				layout_cmp(t_blocks lay1, t_blocks lay2)
 {
-	int					block;
-	int					dim;
-	int					is_equ;
+	int	is_equ;
+	int	block;
+	int	dim;
+
+	block = 0;
+	is_equ = 1;
+	while (is_equ && block < NB_BLOCKS)
+	{
+		dim = 0;
+		while (is_equ && dim < 2)
+		{
+			if (lay1[block][dim] != lay2[block][dim])
+				is_equ = 0;
+			++dim;
+		}
+		++block;
+	}
+	return (is_equ);
+}
+
+t_tetrimino_pattern		*ft_pattern_recognition(int pos[NB_BLOCKS][2])
+{
 	t_tetrimino_pattern	**pat;
 
 	pat = g_patterns;
@@ -149,27 +91,14 @@ t_tetrimino_pattern			*ft_pattern_recognition(int pos[NB_BLOCKS][2])
 	ft_coords_to_layout(pos);
 	while ((*pat) != NULL)
 	{
-		block = 0;
-		is_equ = 1;
-		while (is_equ && block < NB_BLOCKS)
-		{
-			dim = 0;
-			while (is_equ && dim < 2)
-			{
-				if (pos[block][dim] != (*pat)->blocks_pos[block][dim])
-					is_equ = 0;
-				++dim;
-			}
-			++block;
-		}
-		if (is_equ)
+		if (layout_cmp(pos, (*pat)->blocks_pos))
 			return ((t_tetrimino_pattern*)(*pat));
 		++pat;
 	}
 	return (NULL);
 }
 
-void						ft_free_patterns()
+void					ft_free_patterns(void)
 {
 	t_tetrimino_pattern **pat;
 
