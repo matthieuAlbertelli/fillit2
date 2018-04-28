@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:51:06 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 04:06:17 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 12:06:44 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char		*read_line(int pos[NB_BLOCKS][2], int *nb_blocks, const char *buf, 
 	// if (w < NB_BLOCKS || buf[w] != '\n')
 	// 	return(NULL);
 	if (w < NB_BLOCKS)
-		return (NULL);
+		ft_exit();
 	// if (buf[w] == '\n')
 	// {
 	// 	++w;
@@ -159,6 +159,8 @@ int	ft_read_tetriminos(t_tetrimino **tetri, int *nb_tetri, const char *filename)
 			if (*pbuf == '\0')
 				ft_exit();
 		}
+		else if (*pbuf != '\0')
+			ft_exit();
 	}
 	return (1);
 }
