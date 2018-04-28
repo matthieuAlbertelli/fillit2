@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:21:50 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 18:54:18 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 19:12:53 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "clean.h"
 
 /*
-** This function 
+** This function sets the coordinates in absolute values.
 */
 
 void					ft_make_layout(t_blocks layout, int offset[2])
@@ -39,7 +39,7 @@ void					ft_make_layout(t_blocks layout, int offset[2])
 }
 
 /*
-** This function 
+** This function computes the offset of a tetrimino.
 */
 
 void					ft_coords_to_layout(t_blocks blocks_coords)
