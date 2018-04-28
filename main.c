@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:10:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 13:29:52 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 15:15:47 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		main(int argc, char **argv)
 	t_tetris_board	board;
 	int 			i;
 	char			*str;
+	char			buf[BUF_SIZE];
 
 	if (argc != 2)
 		ft_usage(argc);
@@ -42,11 +43,10 @@ int		main(int argc, char **argv)
 	str = NULL;
 	str = ft_tetri_lib();
 	g_patterns = ft_read_patterns(str);
-	if (!ft_read_tetriminos(board.tetriminos, &(board.nb_tetrimino), argv[1]))
-	{
-		ft_putstr("error\n");
-		return (0);
-	}
+	if (!ft_tetri_to_str(buf, BUF_SIZE, argv[1]))
+		ft_exit();
+	if (!ft_read_tetriminos(board.tetriminos, &(board.nb_tetrimino), buf))
+		ft_exit();
 	board.board = (char**)ft_memalloc(sizeof(char*) * MAX_TETRIMINOS * NB_BLOCKS * 2);
 	if (board.board == NULL)
 	{
