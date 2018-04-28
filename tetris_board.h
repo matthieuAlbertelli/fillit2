@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:14:46 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 13:25:26 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 16:53:31 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ typedef struct	s_tetris_board
 	t_tetrimino	*tetriminos[MAX_TETRIMINOS];
 	int			nb_tetrimino;
 }				t_tetris_board;
+
+/*
+** The t_tetris_board structure stores the board in which the program solves
+** the tetris, the size of the square the program is trying to put the 
+** tetriminos in, the tetriminos given by the file and their number.
+*/
 
 int				ft_fill_tetrimino(t_tetris_board *board,
 						int pos[2],

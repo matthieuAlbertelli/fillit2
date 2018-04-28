@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 21:06:17 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 12:47:00 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 16:44:34 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "libft/libft.h"
 
 t_clean	g_clean;
+
+/*
+** These functions allows the program to safely quit freeing all the 
+** data stored in g_clean.
+*/
 
 void	ft_clean()
 {
