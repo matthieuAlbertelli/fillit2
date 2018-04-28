@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:51:06 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 16:38:54 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 18:51:33 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		ft_tetri_to_str(char *buf, size_t buf_size, char *filename)
 	if (fd == -1)
 		return (0);
 	ft_bzero(buf, buf_size);
-	bytes = read(fd, buf, buf_size - 1);
-	if (bytes == -1 || bytes == 0)
+	bytes = read(fd, buf, buf_size);
+	if (bytes == -1 || bytes == 0 || bytes == (ssize_t)buf_size)
 		return (0);
 	close(fd);
 	return (1);

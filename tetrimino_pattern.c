@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetrimino_pattern.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:21:50 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 14:17:47 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 18:54:18 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include "./libft/libft.h"
 #include "tetrimino_pattern.h"
 #include "clean.h"
+
+/*
+** This function 
+*/
 
 void					ft_make_layout(t_blocks layout, int offset[2])
 {
@@ -33,6 +37,10 @@ void					ft_make_layout(t_blocks layout, int offset[2])
 		++block;
 	}
 }
+
+/*
+** This function 
+*/
 
 void					ft_coords_to_layout(t_blocks blocks_coords)
 {
@@ -59,6 +67,11 @@ void					ft_coords_to_layout(t_blocks blocks_coords)
 	ft_make_layout(blocks_coords, offset);
 }
 
+/*
+** This function compares a read tetrimino with an existing patterns in order
+** to see if they are equal.
+*/
+
 static int				layout_cmp(t_blocks lay1, t_blocks lay2)
 {
 	int	is_equ;
@@ -80,6 +93,11 @@ static int				layout_cmp(t_blocks lay1, t_blocks lay2)
 	}
 	return (is_equ);
 }
+
+/*
+** This function launches comparision between a read tetrimino and
+** each tetrimino of the 'library' in order to find its pattern.
+*/
 
 t_tetrimino_pattern		*ft_pattern_recognition(int pos[NB_BLOCKS][2])
 {

@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:02:13 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 16:24:59 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 18:51:53 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define LEFTMOST_BLOCK 1
 # define NB_BLOCKS 4
 # define BLOCK_CHARACTER '#'
-# define BUF_SIZE 2000
+# define BUF_SIZE 546
 
 typedef struct				s_tetrimino_pattern
 {

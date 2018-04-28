@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_patterns.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 13:49:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 13:58:45 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/28 18:06:06 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "libft/libft.h"
 #include "tetrimino_pattern.h"
 #include "clean.h"
+
+/* 
+** This function allocates memory to store the patterns.
+*/
 
 static t_tetrimino_pattern	**init_patterns_tab(unsigned int nb_patterns)
 {
@@ -27,6 +31,10 @@ static t_tetrimino_pattern	**init_patterns_tab(unsigned int nb_patterns)
 	return (patterns);
 }
 
+/*
+** This function allocates memory to read each pattern.
+*/
+
 static t_tetrimino_pattern	*init_pattern(void)
 {
 	t_tetrimino_pattern *tetri;
@@ -36,6 +44,10 @@ static t_tetrimino_pattern	*init_pattern(void)
 		ft_exit();
 	return (tetri);
 }
+
+/*
+** This function reads and stores the absolute coordinates of each patterns.
+*/
 
 static int					read_pattern_layout(t_tetrimino_pattern *pat, \
 												const char *src)
@@ -65,6 +77,11 @@ static int					read_pattern_layout(t_tetrimino_pattern *pat, \
 	}
 	return (src_i);
 }
+
+/*
+** This function reads the string that contains the 'tetrimino library'
+** and stores the patterns.
+*/
 
 t_tetrimino_pattern			**ft_read_patterns(const char *str)
 {
