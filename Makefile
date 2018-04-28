@@ -6,7 +6,7 @@
 #    By: malberte <malberte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/03 22:08:39 by acoulomb          #+#    #+#              #
-#    Updated: 2018/04/28 13:53:06 by malberte         ###   ########.fr        #
+#    Updated: 2018/04/28 14:48:00 by malberte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC =	\
 		tetris_board.c \
 		tetri_lib.c \
 		clean.c \
-		ft_read_patterns.c
+		ft_read_patterns.c \
+		ft_read_tetriminos.c
 
 OBJS = $(SRC:.c=.o)
 LIB = ./libft/libft.a
