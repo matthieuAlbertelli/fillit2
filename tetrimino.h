@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   tetrimino.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:43:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 13:01:59 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 15:18:23 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TETRIMINO_H
 # define TETRIMINO_H
 
+#include <string.h>
 # include "tetrimino_pattern.h"
 # define MAX_TETRIMINOS 26
 # define TETRIMINO_MAP_SIZE 20
@@ -24,8 +25,8 @@ typedef struct	s_tetrimino
 	int					pos[2];
 }				t_tetrimino;
 
-int				ft_read_tetriminos(t_tetrimino **tetri, int *nb_tetri, \
-									const char *filename);
+int				ft_tetri_to_str(char *buf, size_t buf_size, char *filename);
+int				ft_read_tetriminos(t_tetrimino **, int *, const char *);
 void			ft_free_tetri(t_tetrimino **tetri, int *nb_tetri);
 
 #endif

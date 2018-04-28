@@ -32,7 +32,9 @@ SRCS =	\
 		tetrimino_pattern.c \
 		tetris_board.c \
 		tetri_lib.c \
-		clean.c
+		clean.c \
+		ft_read_patterns.c \
+		ft_read_tetriminos.c
 
 #OBJ:
 OBJS = $(SRCS:.c=.o)

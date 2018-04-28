@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetrimino.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:51:06 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 12:59:25 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/28 15:08:55 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,75 +14,21 @@
 #include <unistd.h>
 #include "libft/libft.h"
 #include "tetrimino.h"
-#include "clean.h"
 
-static char		*read_line(int pos[NB_BLOCKS][2], int *nb_blocks, \
-							const char *buf, int height)
+int		ft_tetri_to_str(char *buf, size_t buf_size, char *filename)
 {
-	int w;
-
-	w = 0;
-	while (w < NB_BLOCKS && buf[w])
-	{
-		if (buf[w] == '#')
-		{
-			if (*nb_blocks < NB_BLOCKS)
-			{
-				pos[*nb_blocks][HEIGHT] = height;
-				pos[*nb_blocks][WIDTH] = w;
-			}
-			else
-			{
-				ft_exit();
-			}
-			++*nb_blocks;
-		}
-		else if (buf[w] != '.')
-			ft_exit();
-		++w;
-	}
-	if (w < NB_BLOCKS)
-		ft_exit();
-	return ((char *)(buf + w));
-}
-
-static char		*read_tetrimino(t_tetrimino **new, const char *buf)
-{
-	int					h;
-	int					nb_blocks;
-	int					pos[NB_BLOCKS][2];
-	t_tetrimino_pattern	*pat;
-
-	nb_blocks = 0;
-	h = 0;
-	while (*buf && h < 3)
-	{
-		buf = read_line(pos, &nb_blocks, buf, h);
-		if (buf == NULL)
-			ft_exit();
-		if (*buf != '\n')
-			ft_exit();
-		++buf;
-		h++;
-	}
-	buf = read_line(pos, &nb_blocks, buf, h);
-	++h;
-	if (*buf == '\n')
-		++buf;
-	else if (*buf != '\0')
-		ft_exit();
-	if (h != NB_BLOCKS)
-		ft_exit();
-	pat = ft_pattern_recognition(pos);
-	if (pat == NULL)
-		ft_exit();
-	*new = (t_tetrimino*)ft_memalloc(sizeof(t_tetrimino));
-	if (*new == NULL)
-		ft_exit();
-	(*new)->pattern = pat;
-	(*new)->pos[HEIGHT] = 0;
-	(*new)->pos[WIDTH] = 0;
-	return ((char*)buf);
+	int		fd;
+	ssize_t	bytes;
+	
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	ft_bzero(buf, buf_size);
+	bytes = read(fd, buf, buf_size - 1);
+	if (bytes == -1 || bytes == 0)
+		return (0);
+	close(fd);
+	return (1);
 }
 
 void	ft_free_tetri(t_tetrimino **tetri, int *nb_tetri)
@@ -96,46 +42,4 @@ void	ft_free_tetri(t_tetrimino **tetri, int *nb_tetri)
 		i++;
 	}
 	*nb_tetri = 0;
-}
-
-int		ft_read_tetriminos(t_tetrimino **tetri, int *nb_tetri, \
-							const char *filename)
-{
-	int		fd;
-	char	buf[BUF_SIZE];
-	char	*pbuf;
-	ssize_t	bytes;
-
-	if (nb_tetri == NULL)
-		return (0);
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	ft_bzero(buf, BUF_SIZE);
-	bytes = read(fd, buf, BUF_SIZE - 1);
-	if (bytes == -1 || bytes == 0)
-		return (0);
-	close(fd);
-	pbuf = buf;
-	*nb_tetri = 0;
-	while (*pbuf)
-	{
-		if (*nb_tetri == MAX_TETRIMINOS)
-			ft_exit();
-		pbuf = read_tetrimino(&(tetri[*nb_tetri]), pbuf);
-		if (pbuf == 0)
-			ft_exit();
-		tetri[*nb_tetri]->pos[HEIGHT] = 0;
-		tetri[*nb_tetri]->pos[WIDTH] = -1;
-		++*nb_tetri;
-		if (*pbuf == '\n')
-		{
-			++pbuf;
-			if (*pbuf == '\0')
-				ft_exit();
-		}
-		else if (*pbuf != '\0')
-			ft_exit();
-	}
-	return (1);
 }
