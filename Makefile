@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+         #
+#    By: malberte <malberte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/03 22:08:39 by acoulomb          #+#    #+#              #
-#    Updated: 2018/04/27 21:38:12 by acoulomb         ###   ########.fr        #
+#    Updated: 2018/04/28 02:39:41 by malberte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,19 +22,20 @@ SRC =	\
 		tetris_board.c \
 		tetri_lib.c \
 		clean.c
-		
+
 OBJS = $(SRC:.c=.o)
 LIB = ./libft/libft.a
 
+CC = clang
 FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@gcc $(FLAGS) -o $(NAME) $(OBJS) $(LIB)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(LIB)
 
 %.o : %.c
-	gcc $(FLAGS) -c $^
+	$(CC) $(FLAGS) -c $^
 
 clean:
 	@/bin/rm -f $(OBJS)
@@ -45,4 +46,4 @@ fclean: clean
 re: fclean all
 
 g: re $(OBJS)
-	gcc $(FLAGS) -g $(SRC) $(LIB)
+	$(CC) $(FLAGS) -g $(SRC) $(LIB)
