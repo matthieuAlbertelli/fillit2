@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:14:46 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 13:53:37 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 13:55:39 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ int				ft_solve_fillit(t_tetris_board *board);
 void			ft_print_solution(const t_tetris_board *board);
 int				ft_board_size(int nb_tetrimino);
 void			ft_free_tetris_board(t_tetris_board *tetris);
-static char 	**init_solution(int size);
 
 #endif
