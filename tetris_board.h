@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:14:46 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 16:15:31 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:21:15 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 /*
 ** The t_tetris_board structure stores the board in which the program solves
-** the tetris, the size of the square the program is trying to put the 
+** the tetris, the size of the square the program is trying to put the
 ** tetriminos in, the tetriminos given by the file and their number.
 */
 
