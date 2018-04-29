@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tetris_board.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 12:08:12 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 13:03:57 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "tetris_board.h"
+#include "clean.h"
 
 void calc_offset(int offset[2], const int pos[2], const t_blocks layout)
 {
@@ -184,48 +185,47 @@ int		ft_solve_fillit(t_tetris_board *board)
 	return (0);
 }
 
-// static void init_solution(char **solution, int size)
-// {
-// 	int i;
+static char **init_solution(int size)
+{
+	int i;
+	char **solution;
 	
-// 	i = 0;
-// 	while (i < size)
-// 	{
-// 		ft_memset(solution[i], '.', size);
-// 		solution[i][size] = '\0';
-// 		++i;
-// 	}
-// }
+	i = 0;
+	solution = (char **)ft_safe_alloc(sizeof(char*) * (size + 1));
+	g_clean.solution = solution;
+	while (i < size)
+	{
+		solution[i] = (char *)ft_safe_alloc(sizeof(char) * (size + 1));
+		ft_memset(solution[i], '.', size);
+		solution[i][size] = '\0';
+		++i;
+	}
+	return (solution);
+}
 
-// static void put_solution(char **solution, int size)
-// {
-// 	int i;
-// 	i = 0;
-// 	while (i < size)
-// 	{
-// 		ft_putstr(solution[i]);
-// 		ft_putchar('\n');
-// 		++i;
-// 	}
-// }
+static void put_solution(char **solution, int size)
+{
+	int i;
+	i = 0;
+	while (i < size)
+	{
+		ft_putstr(solution[i]);
+		ft_putchar('\n');
+		++i;
+	}
+}
 
 void	ft_print_solution(const t_tetris_board *board)
 {
 	int					i;
 	int					block;
-	char				solution[board->size + 1][board->size + 1]; //fuck off
+	char				**solution;
 	int					offset[2];
 	t_tetrimino_pattern	*pattern;
 
 	i = 0;
-	while (i < board->size)
-	{
-		ft_memset(solution[i], '.', board->size);
-		solution[i][board->size] = '\0';
-		++i;
-	}
-	//REPLACE WITH THIS
-	//init_solution(solution, board->size);
+	solution = NULL;
+	solution = init_solution(board->size);
 	i = 0;
 	while (i < board->nb_tetrimino)
 	{
@@ -241,15 +241,24 @@ void	ft_print_solution(const t_tetris_board *board)
 		}
 		++i;
 	}
+	put_solution(solution, board->size);
+	ft_free_solution(solution);
+}
+
+void	ft_free_solution(char **solution)
+{
+	int i;
+
 	i = 0;
-	while (i < board->size)
+	if (solution)
 	{
-		ft_putstr(solution[i]);
-		ft_putchar('\n');
-		++i;
+		while (solution[i])
+		{
+			ft_memdel((void**)&solution[i]);
+			i++;
+		}
+		ft_memdel((void**)&solution);
 	}
-	//REPLACE WITH THIS
-	// put_solution(char **solution, int size)
 }
 
 int		ft_board_size(int nb_tetrimino)
