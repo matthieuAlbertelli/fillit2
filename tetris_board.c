@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetris_board.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 14:39:09 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:20:27 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int		ft_fill_tetrimino(t_tetris_board *board, int pos[2], t_blocks layout)
 	return (1);
 }
 
-void	ft_unblock_tetrimino(t_tetris_board *board,	const int pos[2],
-							const int layout[NB_BLOCKS][2])
+void	ft_unblock_tetrimino(t_tetris_board *board, const int pos[2],
+								const int layout[NB_BLOCKS][2])
 {
-	int block;
-	t_blocks unblock_pos;
-	int offset[2];
+	int			block;
+	t_blocks	unblock_pos;
+	int			offset[2];
 
 	if (pos[WIDTH] != -1)
 	{

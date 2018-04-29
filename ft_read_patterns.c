@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 13:49:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 18:06:06 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 14:52:59 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "tetrimino_pattern.h"
 #include "clean.h"
 
-/* 
+/*
 ** This function allocates memory to store the patterns.
 */
 

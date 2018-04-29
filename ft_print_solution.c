@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_solution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/29 14:21:40 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 15:15:29 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:27:56 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include "tetris_board.h"
 #include "position.h"
 
-static char **init_solution(int size)
+static char	**init_solution(int size)
 {
-	int i;
-	char **solution;
-	
+	int		i;
+	char	**solution;
+
 	i = 0;
 	solution = (char **)ft_safe_alloc(sizeof(char*) * (size + 1));
 	g_clean.solution = solution;
@@ -33,9 +33,10 @@ static char **init_solution(int size)
 	return (solution);
 }
 
-static void put_solution(char **solution, int size)
+static void	put_solution(char **solution, int size)
 {
 	int i;
+
 	i = 0;
 	while (i < size)
 	{
@@ -78,7 +79,7 @@ void	ft_print_solution(const t_tetris_board *board)
 	ft_free_solution(solution);
 }
 
-void	ft_free_solution(char **solution)
+void		ft_free_solution(char **solution)
 {
 	int i;
 
