@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetris_board.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 16:45:23 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 19:11:21 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	ft_init_board(t_tetris_board *board)
 	unsigned int i;
 	unsigned int size;
 
-	size = MAX_TETRIMINOS * NB_BLOCKS;
+	size = MAX_TETRIMINOS * NB_BLOCKS * 2;
 	i = 0;
-	board->board = (char**)ft_safe_alloc(sizeof(char*) * size * 2);
+	board->board = (char**)ft_safe_alloc(sizeof(char*) * size);
 	board->size = ft_board_size(board->nb_tetrimino);
 	while (i < size)
 	{
@@ -43,14 +43,19 @@ void	ft_init_board(t_tetris_board *board)
 
 void	ft_free_tetris_board(t_tetris_board *tetris)
 {
-	int i;
+	unsigned int i;
+	unsigned int size;
 
+	size = MAX_TETRIMINOS * NB_BLOCKS * 2;
 	i = 0;
 	ft_free_tetri(tetris->tetriminos, &(tetris->nb_tetrimino));
-	while (i < tetris->size)
+	if (tetris->board != NULL)
 	{
-		ft_memdel((void**)&tetris->board[i]);
-		++i;
+		while (i < size)
+		{
+			ft_memdel((void**)&(tetris->board[i]));
+			++i;
+		}
+		ft_memdel((void**)&(tetris->board));
 	}
-	ft_memdel((void**)&(tetris->board));
 }

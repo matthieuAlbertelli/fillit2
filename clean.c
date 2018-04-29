@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 21:06:17 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 15:21:41 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 18:34:57 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_clean(void)
 {
 	ft_free_tetris_board(g_clean.tetris);
 	ft_free_patterns(g_clean.g_patterns);
+	ft_free_solution(g_clean.solution);
 }
 
 void	ft_exit(void)

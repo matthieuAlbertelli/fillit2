@@ -6,7 +6,7 @@
 #    By: malberte <malberte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/03 22:08:39 by acoulomb          #+#    #+#              #
-#    Updated: 2018/04/29 16:03:50 by malberte         ###   ########.fr        #
+#    Updated: 2018/04/29 18:43:28 by malberte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,6 @@ cleanlib:
 re: fclean all
 
 g: re $(OBJS)
-	$(CC) $(FLAGS) -g $(SRCS) $(LIBFT)
+	$(CC) $(FLAGS) -g $(SRCS) $(LIBFT) -o $(NAME)
 
 .PHONY = re all clean fclean g
