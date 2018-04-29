@@ -6,13 +6,14 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/29 14:21:40 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 14:24:22 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:15:29 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "clean.h"
 #include "tetris_board.h"
+#include "position.h"
 
 static char **init_solution(int size)
 {
@@ -44,28 +45,31 @@ static void put_solution(char **solution, int size)
 	}
 }
 
+static void set_sol(char **solution, t_cpos pos, t_cpos offset, char c)
+{
+	solution[pos[HEIGHT] + offset[HEIGHT]][pos[WIDTH] + offset[WIDTH]] = c;
+}
+
 void	ft_print_solution(const t_tetris_board *board)
 {
 	int					i;
 	int					block;
 	char				**solution;
 	int					offset[2];
-	t_tetrimino_pattern	*pattern;
+	t_tetrimino			*tet;
 
-	solution = NULL;
 	solution = init_solution(board->size);
 	i = 0;
 	while (i < board->nb_tetrimino)
 	{
-		pattern = board->tetriminos[i]->pattern;
-		calc_offset(offset, board->tetriminos[i]->pos, pattern->blocks_pos);
-		solution[board->tetriminos[i]->pos[HEIGHT]][board->tetriminos[i]->pos[WIDTH]] = 'A' + i;
+		tet = board->tetriminos[i];
+		calc_offset(offset, tet->pos, tet->pattern->blocks_pos);
+		solution[tet->pos[HEIGHT]][tet->pos[WIDTH]] = 'A' + i;
 		block = 1;
 		while (block < NB_BLOCKS)
 		{
-			pattern = board->tetriminos[i]->pattern;
-			solution[pattern->blocks_pos[block][HEIGHT] + offset[HEIGHT]]
-					[pattern->blocks_pos[block][WIDTH] + offset[WIDTH]] = 'A' + i;
+			tet = board->tetriminos[i];
+			set_sol(solution, tet->pattern->blocks_pos[block], offset, 'A' + i);
 			++block;
 		}
 		++i;

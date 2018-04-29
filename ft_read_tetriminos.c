@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_tetriminos.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 14:39:31 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 17:39:47 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:26:18 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int				ft_read_tetriminos(t_tetrimino **tetri, int *nb_tetri, \
 	while (*pbuf)
 	{
 		if (*nb_tetri == MAX_TETRIMINOS)
-			ft_exit();
+			return (0);
 		pbuf = read_tetrimino(&(tetri[*nb_tetri]), pbuf);
 // pourquoi initialiser ici et pas dans read_tetrimino ?
 		tetri[*nb_tetri]->pos[HEIGHT] = 0;
@@ -140,10 +140,10 @@ int				ft_read_tetriminos(t_tetrimino **tetri, int *nb_tetri, \
 		{
 			++pbuf;
 			if (*pbuf == '\0')
-				ft_exit();
+				return (0);
 		}
 		else if (*pbuf != '\0')
-			ft_exit();
+			return (0);
 	}
 	return (1);
 }

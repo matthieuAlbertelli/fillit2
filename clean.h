@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 12:44:42 by acoulomb          #+#    #+#             */
-/*   Updated: 2018/04/29 14:40:06 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:21:19 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 typedef struct			s_clean
 {
 	t_tetris_board		*tetris;
-	void				(*ft_free_tetris_board)(t_tetris_board *tetris);
+	// void				(*ft_free_tetris_board)(t_tetris_board *tetris);
 	t_tetrimino_pattern	**g_patterns;
-	void				(*ft_free_patterns)(t_tetrimino_pattern **g_patterns);
+	// void				(*ft_free_patterns)(t_tetrimino_pattern **g_patterns);
 	char				**solution;
-	void				(*ft_free_solution)(char **solution);
+	// void				(*ft_free_solution)(char **solution);
 }						t_clean;
 
 extern					t_clean	g_clean;

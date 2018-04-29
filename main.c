@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:10:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 14:21:19 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:29:57 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ int		main(int argc, char **argv)
 
 	ft_usage(argc);
 	g_clean.tetris = &board;
-    g_clean.ft_free_tetris_board = &ft_free_tetris_board;
     g_clean.g_patterns = g_patterns;
-    g_clean.ft_free_patterns = &ft_free_patterns;   
-	str = NULL;
 	str = ft_tetri_lib();
 	g_patterns = ft_read_patterns(str);
 	if (!ft_tetri_to_str(buf, BUF_SIZE, argv[1]))
@@ -53,10 +50,7 @@ int		main(int argc, char **argv)
 		ft_exit();
 	board.board = (char**)ft_memalloc(sizeof(char*) * MAX_TETRIMINOS * NB_BLOCKS * 2);
 	if (board.board == NULL)
-	{
-		ft_putstr("error\n");
-		return (0);
-	}
+		ft_exit();
 	board.size = ft_board_size(board.nb_tetrimino);
 	i = 0;
 	while (i < MAX_TETRIMINOS * NB_BLOCKS)
@@ -66,10 +60,7 @@ int		main(int argc, char **argv)
 		++i;
 	}
 	if (!ft_solve_fillit(&board))
-	{
-		ft_putstr("error\n");
-		return (0);
-	}
+		ft_exit();
 	ft_print_solution(&board);
 	ft_free_tetris_board(&board);
 	return (0);
