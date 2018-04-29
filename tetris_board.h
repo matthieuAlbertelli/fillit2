@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetris_board.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:14:46 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 13:56:40 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 14:36:03 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,12 @@ void			ft_print_solution(const t_tetris_board *board);
 int				ft_board_size(int nb_tetrimino);
 void			ft_free_tetris_board(t_tetris_board *tetris);
 void			ft_free_solution(char **solution);
+int				*get_tetri_pos(const t_tetris_board *board, int tetri_index);
+int				**get_tetri_pattern(const t_tetris_board *board, int tetri_index);
+void			calc_offset(int offset[2], const int pos[2], const t_blocks layout);
+void			apply_offset(t_blocks result, const t_blocks layout, const int pos[2], const int offset[2]);
+int				is_pos_inside(const int pos[2], int square_size);
+int				is_square_available(const t_tetris_board *board, int pos[2]);
+void			lock_square(t_tetris_board *board, const int pos[2], int lock_state);
 
 #endif
