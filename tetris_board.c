@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 16:14:53 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:38:58 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,19 @@
 #include "clean.h"
 #include "position.h"
 
-void ft_init_board(t_tetris_board *board)
+void	ft_init_board(t_tetris_board *board)
 {
-	int i;
-	
+	unsigned int i;
+	unsigned int size;
+
+	size = MAX_TETRIMINOS * NB_BLOCKS;
 	i = 0;
-	board->board = (char**)ft_safe_alloc(sizeof(char*) * MAX_TETRIMINOS * NB_BLOCKS * 2);
+	board->board = (char**)ft_safe_alloc(sizeof(char*) * size * 2);
 	board->size = ft_board_size(board->nb_tetrimino);
-	while (i < MAX_TETRIMINOS * NB_BLOCKS)
+	while (i < size)
 	{
-		board->board[i] = (char*)ft_safe_alloc(sizeof(char) * MAX_TETRIMINOS * NB_BLOCKS);
-		ft_memset(board->board[i], 1, MAX_TETRIMINOS * NB_BLOCKS);
+		board->board[i] = (char*)ft_safe_alloc(sizeof(char) * size);
+		ft_memset(board->board[i], 1, size);
 		++i;
 	}
 }
