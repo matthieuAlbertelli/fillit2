@@ -6,25 +6,11 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/29 14:25:34 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 16:19:23 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:49:05 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris_board.h"
-
-/*
-** On s'en sert des deux suivantes??
-*/
-
-int		*get_tetri_pos(const t_tetris_board *board, int tetri_index)
-{
-	return ((int*)board->tetriminos[tetri_index]->pos);
-}
-
-int		**get_tetri_pattern(const t_tetris_board *board, int tetri_index)
-{
-	return ((int **)board->tetriminos[tetri_index]->pattern->blocks_pos);
-}
 
 /*
 ** Checks if the position tested is in the square.

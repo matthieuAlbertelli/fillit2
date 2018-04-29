@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetris_board.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 16:38:58 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:45:23 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "tetris_board.h"
 #include "clean.h"
 #include "position.h"
+
+/*
+** This function safely creates the test board and sets all the square as
+** available.
+*/
 
 void	ft_init_board(t_tetris_board *board)
 {
@@ -31,6 +36,10 @@ void	ft_init_board(t_tetris_board *board)
 		++i;
 	}
 }
+
+/*
+** This function frees the tetris board.
+*/
 
 void	ft_free_tetris_board(t_tetris_board *tetris)
 {
