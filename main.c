@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:10:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 15:15:47 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 14:21:19 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ t_tetrimino_pattern **g_patterns;
 void	ft_usage(int ac)
 {
 	if (ac == 1)
+	{
 		ft_putstr("usage:\t./fillit source_file\n\tno input file\n");
+		exit(0);
+	}
 	if (ac > 2)
+	{
 		ft_putstr("usage:\t./fillit source_file\n\ttoo many input files\n");
-	exit(0);
+		exit(0);
+	}
 }
 
 int		main(int argc, char **argv)
@@ -34,8 +39,7 @@ int		main(int argc, char **argv)
 	char			*str;
 	char			buf[BUF_SIZE];
 
-	if (argc != 2)
-		ft_usage(argc);
+	ft_usage(argc);
 	g_clean.tetris = &board;
     g_clean.ft_free_tetris_board = &ft_free_tetris_board;
     g_clean.g_patterns = g_patterns;
