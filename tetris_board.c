@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 12:08:12 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 12:54:34 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,23 @@ void posinit(int dst[2], int x, int y)
 	dst[1] = y;
 }
 
+int *pos_add_offset(int dst[2], int pos[2], int offset[2])
+{
+	dst[0] = pos[0] + offset[0];
+	dst[1] = pos[1] + offset[1];
+	return ((int*)dst);
+}
+
+int *pos_retrieve_offset(int dst[2], int pos[2], int offset[2])
+{
+	dst[0] = pos[0] - offset[0];
+	dst[1] = pos[1] - offset[1];
+	return ((int*)dst);
+}
+
 int *get_tetri_pos(const t_tetris_board *board, int tetri_index)
 {
-	return (board->tetriminos[tetri_index]->pos);
+	return ((int*)board->tetriminos[tetri_index]->pos);
 }
 
 int **get_tetri_pattern(const t_tetris_board *board, int tetri_index)
@@ -229,14 +243,15 @@ void	ft_print_solution(const t_tetris_board *board)
 	i = 0;
 	while (i < board->nb_tetrimino)
 	{
-		posinit(offset, board->tetriminos[i]->pos[HEIGHT] - board->tetriminos[i]->pattern->blocks_pos[HEIGHEST_BLOCK][HEIGHT], board->tetriminos[i]->pos[WIDTH] - board->tetriminos[i]->pattern->blocks_pos[HEIGHEST_BLOCK][WIDTH]);
-		//posinit(offset, get_tetri_pos(board, i)[HEIGHT], get_tetri_pos(board, i)[WIDTH]);
+		pattern = board->tetriminos[i]->pattern;
+		calc_offset(offset, board->tetriminos[i]->pos, pattern->blocks_pos);
 		solution[board->tetriminos[i]->pos[HEIGHT]][board->tetriminos[i]->pos[WIDTH]] = 'A' + i;
 		block = 1;
 		while (block < NB_BLOCKS)
 		{
 			pattern = board->tetriminos[i]->pattern;
-			solution[pattern->blocks_pos[block][HEIGHT] + offset[HEIGHT]][pattern->blocks_pos[block][WIDTH] + offset[WIDTH]] = 'A' + i;
+			solution[pattern->blocks_pos[block][HEIGHT] + offset[HEIGHT]]
+					[pattern->blocks_pos[block][WIDTH] + offset[WIDTH]] = 'A' + i;
 			++block;
 		}
 		++i;
