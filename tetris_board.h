@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetris_board.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:14:46 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 14:36:03 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:23:45 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ typedef struct	s_tetris_board
 
 /*
 ** The t_tetris_board structure stores the board in which the program solves
-** the tetris, the size of the square the program is trying to put the 
+** the tetris, the size of the square the program is trying to put the
 ** tetriminos in, the tetriminos given by the file and their number.
 */
 
 int				ft_fill_tetrimino(t_tetris_board *board,
 						int pos[2],
-						int tetrimino_layout[NB_BLOCKS][2]);
+						t_blocks layout);
 
 void			ft_unblock_tetrimino(t_tetris_board *board,
 							const int pos[2],
-							const int tetrimino_layout[NB_BLOCKS][2]);
+							const int layout[NB_BLOCKS][2]);
 
 int				ft_next_available_square(int next_pos[2],
 								t_tetrimino *tetrimino,
@@ -50,11 +50,22 @@ int				ft_board_size(int nb_tetrimino);
 void			ft_free_tetris_board(t_tetris_board *tetris);
 void			ft_free_solution(char **solution);
 int				*get_tetri_pos(const t_tetris_board *board, int tetri_index);
-int				**get_tetri_pattern(const t_tetris_board *board, int tetri_index);
-void			calc_offset(int offset[2], const int pos[2], const t_blocks layout);
-void			apply_offset(t_blocks result, const t_blocks layout, const int pos[2], const int offset[2]);
+int				**get_tetri_pattern(const t_tetris_board *board,
+									int tetri_index);
+
+void			calc_offset(int offset[2],
+							const int pos[2],
+							const t_blocks layout);
+
+void			apply_offset(t_blocks result,
+							const t_blocks layout,
+							const int pos[2],
+							const int offset[2]);
+
 int				is_pos_inside(const int pos[2], int square_size);
 int				is_square_available(const t_tetris_board *board, int pos[2]);
-void			lock_square(t_tetris_board *board, const int pos[2], int lock_state);
+void			lock_square(t_tetris_board *board,
+							const int pos[2],
+							int lock_state);
 
 #endif
