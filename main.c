@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:10:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 16:00:00 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:11:31 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		main(int argc, char **argv)
 
 	ft_usage(argc);
 	g_clean.tetris = &board;
-    g_clean.g_patterns = g_patterns;
+	g_clean.g_patterns = g_patterns;
 	ft_tetri_lib(str);
 	g_patterns = ft_read_patterns(str);
 	if (!ft_tetri_to_str(buf, BUF_SIZE, argv[1]))

@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:14:46 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 15:57:20 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:15:31 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_tetris_board
 */
 
 void			ft_init_board(t_tetris_board *board);
+void			ft_free_tetris_board(t_tetris_board *tetris);
 int				ft_fill_tetrimino(t_tetris_board *board,
 						int pos[2],
 						t_blocks layout);
@@ -54,7 +55,6 @@ int				ft_next_available_square(int next_pos[2],
 int				ft_solve_fillit(t_tetris_board *board);
 void			ft_print_solution(const t_tetris_board *board);
 int				ft_board_size(int nb_tetrimino);
-void			ft_free_tetris_board(t_tetris_board *tetris);
 void			ft_free_solution(char **solution);
 int				*get_tetri_pos(const t_tetris_board *board, int tetri_index);
 int				**get_tetri_pattern(const t_tetris_board *board,

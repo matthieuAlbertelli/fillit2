@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_solution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/29 14:21:40 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 15:27:56 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:10:57 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "tetris_board.h"
 #include "position.h"
 
-static char	**init_solution(int size)
+static char		**init_solution(int size)
 {
 	int		i;
 	char	**solution;
@@ -33,7 +33,7 @@ static char	**init_solution(int size)
 	return (solution);
 }
 
-static void	put_solution(char **solution, int size)
+static void		put_solution(char **solution, int size)
 {
 	int i;
 
@@ -46,12 +46,12 @@ static void	put_solution(char **solution, int size)
 	}
 }
 
-static void set_sol(char **solution, t_cpos pos, t_cpos offset, char c)
+static void		set_sol(char **solution, t_cpos pos, t_cpos offset, char c)
 {
 	solution[pos[HEIGHT] + offset[HEIGHT]][pos[WIDTH] + offset[WIDTH]] = c;
 }
 
-void	ft_print_solution(const t_tetris_board *board)
+void			ft_print_solution(const t_tetris_board *board)
 {
 	int					i;
 	int					block;
@@ -79,7 +79,7 @@ void	ft_print_solution(const t_tetris_board *board)
 	ft_free_solution(solution);
 }
 
-void		ft_free_solution(char **solution)
+void			ft_free_solution(char **solution)
 {
 	int i;
 

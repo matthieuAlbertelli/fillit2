@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/29 16:02:29 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 16:04:36 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:12:41 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int		ft_next_available_square(int next_pos[2],
 
 int		ft_solve_fillit(t_tetris_board *board)
 {
-	int n;
-	int next_pos[2];
+	int		n;
+	t_pos	next_pos;
 
 	n = 0;
 	while (n > -1)
@@ -109,8 +109,7 @@ int		ft_solve_fillit(t_tetris_board *board)
 		else
 		{
 			posinit(board->tetriminos[n]->pos, 0, -1);
-			--n;
-			if (n != -1)
+			if (--n != -1)
 				ft_unblock_tetrimino(board, board->tetriminos[n]->pos, \
 							board->tetriminos[n]->pattern->blocks_pos);
 		}

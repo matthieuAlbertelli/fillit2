@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 16:03:19 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:14:53 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void ft_init_board(t_tetris_board *board)
 {
 	int i;
 	
+	i = 0;
 	board->board = (char**)ft_safe_alloc(sizeof(char*) * MAX_TETRIMINOS * NB_BLOCKS * 2);
 	board->size = ft_board_size(board->nb_tetrimino);
-	i = 0;
 	while (i < MAX_TETRIMINOS * NB_BLOCKS)
 	{
 		board->board[i] = (char*)ft_safe_alloc(sizeof(char) * MAX_TETRIMINOS * NB_BLOCKS);
@@ -34,8 +34,8 @@ void	ft_free_tetris_board(t_tetris_board *tetris)
 {
 	int i;
 
-	ft_free_tetri(tetris->tetriminos, &(tetris->nb_tetrimino));
 	i = 0;
+	ft_free_tetri(tetris->tetriminos, &(tetris->nb_tetrimino));
 	while (i < tetris->size)
 	{
 		ft_memdel((void**)&tetris->board[i]);
