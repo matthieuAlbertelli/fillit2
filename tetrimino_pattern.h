@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 19:02:13 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 14:56:41 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:06:24 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ extern t_tetrimino_pattern	**g_patterns;
 t_tetrimino_pattern			**ft_read_patterns(const char *str);
 void						ft_coords_to_layout(int pos[NB_BLOCKS][2]);
 t_tetrimino_pattern			*ft_pattern_recognition(int pos[NB_BLOCKS][2]);
-void						ft_free_patterns(void);
+void						ft_free_patterns(t_tetrimino_pattern **g_patterns);
 
 #endif
