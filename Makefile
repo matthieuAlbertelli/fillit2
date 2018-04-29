@@ -6,7 +6,7 @@
 #    By: malberte <malberte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/03 22:08:39 by acoulomb          #+#    #+#              #
-#    Updated: 2018/04/29 14:39:52 by malberte         ###   ########.fr        #
+#    Updated: 2018/04/29 16:03:50 by malberte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRCS =	\
 		position.c \
 		tetris_board_access.c \
 		tetris_board_offset_calc.c \
-		ft_board_size.c
+		ft_board_size.c \
+		ft_solve_fillit.c
 
 #OBJ:
 OBJS = $(SRCS:.c=.o)

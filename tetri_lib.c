@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetri_lib.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 21:07:34 by acoulomb          #+#    #+#             */
-/*   Updated: 2018/04/29 14:44:39 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:53:43 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,19 @@
 ** the global g_patterns who contains 19 structures t_tetrimino_pattern.
 */
 
-char	*ft_tetri_lib(void)
+char	*ft_tetri_lib(char *str)
 {
-	char *str;
-
-	str = ft_strnew(300);
-	ft_strlcat(str, NB_TETRI_LIB, 300);
-	ft_strlcat(str, TETRI_I, 300);
-	ft_strlcat(str, TETRI_J, 300);
-	ft_strlcat(str, TETRI_J2, 300);
-	ft_strlcat(str, TETRI_L, 300);
-	ft_strlcat(str, TETRI_L2, 300);
-	ft_strlcat(str, TETRI_O, 300);
-	ft_strlcat(str, TETRI_S, 300);
-	ft_strlcat(str, TETRI_Z, 300);
-	ft_strlcat(str, TETRI_T, 300);
-	ft_strlcat(str, TETRI_T2, 300);
+	ft_bzero(str, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, NB_TETRI_LIB, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, TETRI_I, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, TETRI_J, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, TETRI_J2, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, TETRI_L, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, TETRI_L2, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, TETRI_O, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, TETRI_S, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, TETRI_Z, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, TETRI_T, TETRI_LIB_BUF_SIZE);
+	ft_strlcat(str, TETRI_T2, TETRI_LIB_BUF_SIZE);
 	return (str);
 }

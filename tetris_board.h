@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetris_board.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:14:46 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 15:23:45 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:57:20 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	s_tetris_board
 ** tetriminos in, the tetriminos given by the file and their number.
 */
 
+void			ft_init_board(t_tetris_board *board);
 int				ft_fill_tetrimino(t_tetris_board *board,
 						int pos[2],
 						t_blocks layout);
