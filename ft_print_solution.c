@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_solution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/29 14:21:40 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 14:24:22 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:27:56 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "clean.h"
 #include "tetris_board.h"
 
-static char **init_solution(int size)
+static char	**init_solution(int size)
 {
-	int i;
-	char **solution;
-	
+	int		i;
+	char	**solution;
+
 	i = 0;
 	solution = (char **)ft_safe_alloc(sizeof(char*) * (size + 1));
 	g_clean.solution = solution;
@@ -32,9 +32,10 @@ static char **init_solution(int size)
 	return (solution);
 }
 
-static void put_solution(char **solution, int size)
+static void	put_solution(char **solution, int size)
 {
 	int i;
+
 	i = 0;
 	while (i < size)
 	{
@@ -44,7 +45,7 @@ static void put_solution(char **solution, int size)
 	}
 }
 
-void	ft_print_solution(const t_tetris_board *board)
+void		ft_print_solution(const t_tetris_board *board)
 {
 	int					i;
 	int					block;
@@ -59,13 +60,15 @@ void	ft_print_solution(const t_tetris_board *board)
 	{
 		pattern = board->tetriminos[i]->pattern;
 		calc_offset(offset, board->tetriminos[i]->pos, pattern->blocks_pos);
-		solution[board->tetriminos[i]->pos[HEIGHT]][board->tetriminos[i]->pos[WIDTH]] = 'A' + i;
+		solution[board->tetriminos[i]->\
+		pos[HEIGHT]][board->tetriminos[i]->pos[WIDTH]] = 'A' + i;
 		block = 1;
 		while (block < NB_BLOCKS)
 		{
 			pattern = board->tetriminos[i]->pattern;
 			solution[pattern->blocks_pos[block][HEIGHT] + offset[HEIGHT]]
-					[pattern->blocks_pos[block][WIDTH] + offset[WIDTH]] = 'A' + i;
+					[pattern->blocks_pos[block][WIDTH] + offset[WIDTH]] =
+					'A' + i;
 			++block;
 		}
 		++i;
@@ -74,7 +77,7 @@ void	ft_print_solution(const t_tetris_board *board)
 	ft_free_solution(solution);
 }
 
-void	ft_free_solution(char **solution)
+void		ft_free_solution(char **solution)
 {
 	int i;
 
