@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 21:10:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 15:29:57 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:11:31 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,19 @@ void	ft_usage(int ac)
 int		main(int argc, char **argv)
 {
 	t_tetris_board	board;
-	int 			i;
-	char			*str;
+	char			str[TETRI_LIB_BUF_SIZE];
 	char			buf[BUF_SIZE];
 
 	ft_usage(argc);
 	g_clean.tetris = &board;
-    g_clean.g_patterns = g_patterns;
-	str = ft_tetri_lib();
+	g_clean.g_patterns = g_patterns;
+	ft_tetri_lib(str);
 	g_patterns = ft_read_patterns(str);
 	if (!ft_tetri_to_str(buf, BUF_SIZE, argv[1]))
 		ft_exit();
 	if (!ft_read_tetriminos(board.tetriminos, &(board.nb_tetrimino), buf))
 		ft_exit();
-	board.board = (char**)ft_memalloc(sizeof(char*) * MAX_TETRIMINOS * NB_BLOCKS * 2);
-	if (board.board == NULL)
-		ft_exit();
-	board.size = ft_board_size(board.nb_tetrimino);
-	i = 0;
-	while (i < MAX_TETRIMINOS * NB_BLOCKS)
-	{
-		board.board[i] = (char*)ft_memalloc(sizeof(char) * MAX_TETRIMINOS * NB_BLOCKS);
-		ft_memset(board.board[i], 1, MAX_TETRIMINOS * NB_BLOCKS);
-		++i;
-	}
+	ft_init_board(&board);
 	if (!ft_solve_fillit(&board))
 		ft_exit();
 	ft_print_solution(&board);
