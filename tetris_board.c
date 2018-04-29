@@ -6,7 +6,7 @@
 /*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 22:41:03 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 12:08:12 by malberte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,22 @@ void poscpy(int dst[2], const int src[2])
 	dst[1] = src[1];
 }
 
-/*
-**Ces deux fonctions peuvent etre regroupees en une au prix d'operations
-**supplementaires en stockant les positions de remplissage depuis une fonction
-**dediee.
-**
-** precondition: pos est libre
-*/
+void posinit(int dst[2], int x, int y)
+{
+	dst[0] = x;
+	dst[1] = y;
+}
+
+int *get_tetri_pos(const t_tetris_board *board, int tetri_index)
+{
+	return (board->tetriminos[tetri_index]->pos);
+}
+
+int **get_tetri_pattern(const t_tetris_board *board, int tetri_index)
+{
+	return ((int **)board->tetriminos[tetri_index]->pattern->blocks_pos);
+}
+
 int		ft_fill_tetrimino(t_tetris_board *board, int pos[2], t_blocks layout)
 {
 	int block;
@@ -123,8 +132,7 @@ int		ft_next_available_square(int next_pos[2],
 
 	if (next_pos == NULL || tetrimino == NULL || board == NULL)
 		return (0);
-	next_pos[HEIGHT] = 0;
-	next_pos[WIDTH] = -1;
+	posinit(next_pos, 0, -1);
 	h = tetrimino->pos[HEIGHT];
 	w = tetrimino->pos[WIDTH] + 1;
 	while (h < board->size)
@@ -133,8 +141,7 @@ int		ft_next_available_square(int next_pos[2],
 		{
 			if (board->board[h][w] == AVAILABLE_SQUARE)
 			{
-				next_pos[HEIGHT] = h;
-				next_pos[WIDTH] = w;
+				posinit(next_pos, h, w);
 				if (ft_fill_tetrimino(board, next_pos, \
 					tetrimino->pattern->blocks_pos))
 					return (1);
@@ -157,14 +164,12 @@ int		ft_solve_fillit(t_tetris_board *board)
 	{
 		if (ft_next_available_square(next_pos, board->tetriminos[n], board))
 		{
-			board->tetriminos[n]->pos[HEIGHT] = next_pos[HEIGHT];
-			board->tetriminos[n]->pos[WIDTH] = next_pos[WIDTH];
+			poscpy(board->tetriminos[n]->pos, next_pos);
 			++n;
 		}
 		else
 		{
-			board->tetriminos[n]->pos[HEIGHT] = 0;
-			board->tetriminos[n]->pos[WIDTH] = -1;
+			posinit(board->tetriminos[n]->pos, 0, -1);
 			--n;
 			if (n != -1)
 				ft_unblock_tetrimino(board, board->tetriminos[n]->pos, \
@@ -178,6 +183,31 @@ int		ft_solve_fillit(t_tetris_board *board)
 		return (1);
 	return (0);
 }
+
+// static void init_solution(char **solution, int size)
+// {
+// 	int i;
+	
+// 	i = 0;
+// 	while (i < size)
+// 	{
+// 		ft_memset(solution[i], '.', size);
+// 		solution[i][size] = '\0';
+// 		++i;
+// 	}
+// }
+
+// static void put_solution(char **solution, int size)
+// {
+// 	int i;
+// 	i = 0;
+// 	while (i < size)
+// 	{
+// 		ft_putstr(solution[i]);
+// 		ft_putchar('\n');
+// 		++i;
+// 	}
+// }
 
 void	ft_print_solution(const t_tetris_board *board)
 {
@@ -194,11 +224,13 @@ void	ft_print_solution(const t_tetris_board *board)
 		solution[i][board->size] = '\0';
 		++i;
 	}
+	//REPLACE WITH THIS
+	//init_solution(solution, board->size);
 	i = 0;
 	while (i < board->nb_tetrimino)
 	{
-		offset[HEIGHT] = board->tetriminos[i]->pos[HEIGHT] - board->tetriminos[i]->pattern->blocks_pos[HEIGHEST_BLOCK][HEIGHT];
-		offset[WIDTH] = board->tetriminos[i]->pos[WIDTH] - board->tetriminos[i]->pattern->blocks_pos[HEIGHEST_BLOCK][WIDTH];
+		posinit(offset, board->tetriminos[i]->pos[HEIGHT] - board->tetriminos[i]->pattern->blocks_pos[HEIGHEST_BLOCK][HEIGHT], board->tetriminos[i]->pos[WIDTH] - board->tetriminos[i]->pattern->blocks_pos[HEIGHEST_BLOCK][WIDTH]);
+		//posinit(offset, get_tetri_pos(board, i)[HEIGHT], get_tetri_pos(board, i)[WIDTH]);
 		solution[board->tetriminos[i]->pos[HEIGHT]][board->tetriminos[i]->pos[WIDTH]] = 'A' + i;
 		block = 1;
 		while (block < NB_BLOCKS)
@@ -216,6 +248,8 @@ void	ft_print_solution(const t_tetris_board *board)
 		ft_putchar('\n');
 		++i;
 	}
+	//REPLACE WITH THIS
+	// put_solution(char **solution, int size)
 }
 
 int		ft_board_size(int nb_tetrimino)
