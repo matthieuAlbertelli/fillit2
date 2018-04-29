@@ -6,14 +6,14 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:43:38 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 16:50:22 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:00:09 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TETRIMINO_H
 # define TETRIMINO_H
 
-#include <string.h>
+# include <string.h>
 # include "tetrimino_pattern.h"
 # define MAX_TETRIMINOS 26
 # define TETRIMINO_MAP_SIZE 20
@@ -31,7 +31,8 @@ typedef struct	s_tetrimino
 */
 
 int				ft_tetri_to_str(char *buf, size_t buf_size, char *filename);
-int				ft_read_tetriminos(t_tetrimino **, int *, const char *);
+int				ft_read_tetriminos(t_tetrimino **tetri, int *nb_tetri,
+									const char *buf);
 void			ft_free_tetri(t_tetrimino **tetri, int *nb_tetri);
 
 #endif

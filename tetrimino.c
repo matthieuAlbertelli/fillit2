@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 14:51:06 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/28 18:51:33 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 14:59:03 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "tetrimino.h"
 
 /*
-** This function opens the input file. If the file is valid, buf_size characters 
+** This function opens the input file. If the file is valid, buf_size chars
 ** are copied in the buf in order to process it.
 */
 
@@ -24,7 +24,7 @@ int		ft_tetri_to_str(char *buf, size_t buf_size, char *filename)
 {
 	int		fd;
 	ssize_t	bytes;
-	
+
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
