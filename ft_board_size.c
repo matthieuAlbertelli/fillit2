@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_board_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malberte <malberte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/29 14:39:01 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 14:39:30 by malberte         ###   ########.fr       */
+/*   Updated: 2018/04/29 15:44:10 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris_board.h"
+
+/*
+** This function computes the minimum square in which the given tetriminos
+** could fit. The return value is the size of a side (e.g. 3 for a 3x3 square).
+*/
 
 int		ft_board_size(int nb_tetrimino)
 {

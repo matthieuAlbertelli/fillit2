@@ -6,7 +6,7 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/24 14:22:24 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 15:20:27 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:15:31 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "tetris_board.h"
 #include "clean.h"
 #include "position.h"
+
+/*
+** This function fills the test board with a tetrimino when it fits a specified
+** square, block per block. Returns 1 if it went well.
+*/
 
 int		ft_fill_tetrimino(t_tetris_board *board, int pos[2], t_blocks layout)
 {
@@ -44,6 +49,10 @@ int		ft_fill_tetrimino(t_tetris_board *board, int pos[2], t_blocks layout)
 	return (1);
 }
 
+/*
+** This function takes out a tetrimino from the test board.
+*/
+
 void	ft_unblock_tetrimino(t_tetris_board *board, const int pos[2],
 								const int layout[NB_BLOCKS][2])
 {
@@ -63,6 +72,12 @@ void	ft_unblock_tetrimino(t_tetris_board *board, const int pos[2],
 		}
 	}
 }
+
+/*
+** This function computes the next available square for a given tetrimino,
+** according to the test board at this moment. If the tetrimino fits, the board
+** is filled (return 1). Else, it returns 0.
+*/
 
 int		ft_next_available_square(int next_pos[2],
 								t_tetrimino *tetrimino,
@@ -95,6 +110,14 @@ int		ft_next_available_square(int next_pos[2],
 	return (0);
 }
 
+/*
+** Thanks to an iterative pile algorythm, this function places each tetrimino
+** in the highest position on the left, in the given order. If at one point,
+** it can't put the next tetrimino, it moves the previous one to it's next
+** available square. If all the possibilities have been tested and no solution
+** found, the global board size increases.
+*/
+
 int		ft_solve_fillit(t_tetris_board *board)
 {
 	int n;
@@ -124,6 +147,10 @@ int		ft_solve_fillit(t_tetris_board *board)
 		return (1);
 	return (0);
 }
+
+/*
+** This function frees the tetris board.
+*/
 
 void	ft_free_tetris_board(t_tetris_board *tetris)
 {

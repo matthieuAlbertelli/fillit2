@@ -6,11 +6,15 @@
 /*   By: acoulomb <acoulomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/29 14:27:57 by malberte          #+#    #+#             */
-/*   Updated: 2018/04/29 15:21:55 by acoulomb         ###   ########.fr       */
+/*   Updated: 2018/04/29 16:20:53 by acoulomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tetris_board.h"
+
+/*
+** These functions are used to compute and apply the offset on the tetriminos.
+*/
 
 void	calc_offset(int offset[2], const int pos[2], const t_blocks layout)
 {
